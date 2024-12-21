@@ -1,0 +1,10 @@
+h1 {
+  color: var(--tatooine-sand);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.font-bold {
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}

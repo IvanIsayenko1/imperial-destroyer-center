@@ -1,0 +1,91 @@
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.paginator-button {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 59, 59, 0.1);
+  border: 1px solid rgba(255, 59, 59, 0.2);
+  color: var(--rebel-base);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.paginator-pages {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.paginator-page {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  background: transparent;
+  color: var(--rebel-base);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.paginator-page:hover:not(:disabled),
+.paginator-button:hover:not(:disabled) {
+  background: rgba(255, 59, 59, 0.2);
+  box-shadow: 0 0 15px rgba(255, 59, 59, 0.3);
+}
+
+.paginator-page.active {
+  background: rgba(255, 59, 59, 0.2);
+  box-shadow: 0 0 10px rgba(255, 59, 59, 0.3);
+}
+
+.paginator-button:disabled,
+.paginator-page:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .paginator {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .paginator-pages {
+    order: -1;
+    justify-content: center;
+  }
+
+  .paginator-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .paginator-page {
+    min-width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .paginator-pages {
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .paginator-pages::-webkit-scrollbar {
+    display: none;
+  }
+}

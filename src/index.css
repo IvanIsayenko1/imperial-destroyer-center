@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Primary Theme Colors */
+  --lightsaber-blue: #007bff; /* Lightsaber Blue */
+  --sith-red: #ff3b3b; /* Sith Red */
+  --droid-gray: #b0b0b0; /* Droid Gray */
+  --jedi-green: #28a745; /* Jedi Green */
+  --tatooine-sand: #e4c29d; /* Tatooine Sand */
+
+  /* Background Colors */
+  --dark-space: #0d0d0d; /* Deep Space Black */
+  --galactic-purple: #4b0082; /* Galactic Purple */
+  --rebel-base: #f8f9fa; /* Light Rebel Base Gray */
+  --star-dust: #2c2c54; /* Starry Night Blue */
+  --sunset-orange: #ff7f50; /* Twin Suns Orange */
+
+  /* New background colors */
+  --space-bg-start: #1a1a2e;
+  --space-bg-end: #16213e;
+
+  --primary-color: var(--lightsaber-blue);
+  --secondary-color: var(--sith-red);
+  --text-color: var(--star-dust);
+  --background-color: var(--rebel-base);
+  --accent-color: var(--sith-red);
+}
+
+body {
+  max-width: 1920px;
+  min-width: 360px;
+  margin: 12px auto;
+  font-family: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+
+  /* Space themed background */
+  background: linear-gradient(
+    135deg,
+    var(--space-bg-start) 0%,
+    var(--space-bg-end) 100%
+  );
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Add subtle star-like dots */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
+  pointer-events: none;
+}

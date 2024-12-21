@@ -1,0 +1,26 @@
+.page-title {
+  margin-bottom: 2rem;
+}
+
+.page-title h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--rebel-base);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  text-shadow: 1px 1px 0px var(--sith-red), 2px 2px 8px rgba(255, 59, 59, 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.page-title h2:hover {
+  text-shadow: 2px 2px 0px var(--sith-red), 4px 4px 12px rgba(255, 59, 59, 0.5);
+}
+
+p {
+  color: var(--rebel-base);
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}

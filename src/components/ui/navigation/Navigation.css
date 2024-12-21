@@ -1,0 +1,47 @@
+nav {
+  display: flex;
+  gap: 24px;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--rebel-base);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 59, 59, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, var(--sith-red), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 8px;
+  z-index: -1;
+}
+
+.nav-link:hover {
+  color: white;
+  transform: translateY(-2px);
+}
+
+.nav-link:hover::before {
+  opacity: 1;
+}
+
+.nav-link.active {
+  color: white;
+  background: linear-gradient(45deg, var(--sith-red), transparent);
+  border-color: var(--sith-red);
+  box-shadow: 0 0 20px rgba(255, 59, 59, 0.2);
+}
