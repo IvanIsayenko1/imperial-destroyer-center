@@ -1,17 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useDebounce } from '@/hooks/useDebounce';
-import { fetchAllValues } from '@/services/api/swapi';
-import React from 'react';
-import { ELEMENTS_PER_PAGE, SORT_DIRECTIONS } from '@/constants/constants';
-import './Page.css';
-import { Paginator } from '@/components/ui/paginator/Paginator';
-import { Card } from '@/components/ui/card/Card';
-import { Filters } from '@/components/ui/filters/Filters';
-import { List } from '@/components/ui/list/List';
-import { NoResults } from '@/components/ui/noResults/NoResults';
-import { Error } from '@/components/ui/error/Error';
-import { Loading } from '@/components/ui/loading/Loading';
-import { PageTitle } from '@/components/ui/pageTitle/PageTitle';
+import { useEffect, useMemo, useState } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { fetchAllValues } from "@/services/api/swapi";
+import { ELEMENTS_PER_PAGE, SORT_DIRECTIONS } from "@/constants/constants";
+import "./Page.css";
+import { Paginator } from "@/components/ui/paginator/Paginator";
+import { Card } from "@/components/ui/card/Card";
+import { Filters } from "@/components/ui/filters/Filters";
+import { List } from "@/components/ui/list/List";
+import { NoResults } from "@/components/ui/noResults/NoResults";
+import { Error } from "@/components/ui/error/Error";
+import { Loading } from "@/components/ui/loading/Loading";
+import { PageTitle } from "@/components/ui/pageTitle/PageTitle";
 
 export interface PageConfig<P> {
   texts: {
@@ -24,6 +23,7 @@ export interface PageConfig<P> {
   sortOptions: { label: string; value: string }[];
   cardProperties: Array<keyof P>;
   name: string;
+  debounceTime: number;
   getImage: (name: string) => string;
 }
 
@@ -33,19 +33,19 @@ type PageProps<P> = {
 
 export const Page = <
   P extends { name: string },
-  T extends { result: { properties: P } },
+  T extends { result: { properties: P } }
 >({
   config,
 }: PageProps<P>) => {
   const [values, setValues] = useState<T[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState<Error | null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
   const [sortDirection, setSortDirection] = useState(SORT_DIRECTIONS.ASC);
   const [isFiltering, setIsFiltering] = useState(false);
 
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const debouncedSearchTerm = useDebounce(searchTerm, config.debounceTime);
 
   useEffect(() => {
     fetchAllValues<T>(config.fetchUrl)
@@ -58,7 +58,7 @@ export const Page = <
       setSortBy(sortBy);
       setSortDirection(sortDirection);
     }
-  }, []);
+  }, [config.fetchUrl, config.name]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -67,18 +67,23 @@ export const Page = <
   useEffect(() => {
     localStorage.setItem(
       config.name,
-      JSON.stringify({ sortBy, sortDirection }),
+      JSON.stringify({ sortBy, sortDirection })
     );
-  }, [sortBy, sortDirection]);
+  }, [config.name, sortBy, sortDirection]);
 
   const handleClearFilters = () => {
-    setSearchTerm('');
-    setSortBy('');
+    setSearchTerm("");
+    setSortBy("");
     setSortDirection(SORT_DIRECTIONS.ASC);
     setCurrentPage(1);
   };
 
   const filteredAndSortedValues = useMemo(() => {
+    console.log("filteredAndSortedValues");
+    console.log("debouncedSearchTerm", debouncedSearchTerm);
+    console.log("sortBy", sortBy);
+    console.log("sortDirection", sortDirection);
+
     setIsFiltering(true);
     let result = [...values];
 
@@ -86,7 +91,7 @@ export const Page = <
       result = result.filter((starship) =>
         starship.result.properties.name
           .toLowerCase()
-          .includes(debouncedSearchTerm.toLowerCase()),
+          .includes(debouncedSearchTerm.toLowerCase())
       );
     }
 
@@ -96,7 +101,7 @@ export const Page = <
         const valueB = b.result.properties[sortBy as keyof P];
 
         const comparison =
-          typeof valueA === 'number' && typeof valueB === 'number'
+          typeof valueA === "number" && typeof valueB === "number"
             ? valueA - valueB
             : String(valueA).localeCompare(String(valueB));
 
@@ -110,16 +115,17 @@ export const Page = <
 
   const indexOfLastValue = currentPage * ELEMENTS_PER_PAGE;
   const indexOfFirstValue = indexOfLastValue - ELEMENTS_PER_PAGE;
+
   const currentValues = filteredAndSortedValues.slice(
     indexOfFirstValue,
-    indexOfLastValue,
+    indexOfLastValue
   );
 
   const getPopulatedCardProperties = (value: T) => {
     const populatedCardProperties: { [key: string]: string } = {};
     config.cardProperties.forEach((key) => {
       populatedCardProperties[key as string] = String(
-        value.result.properties[key],
+        value.result.properties[key]
       );
     });
     return populatedCardProperties;
@@ -140,15 +146,21 @@ export const Page = <
         subtitle={`Showing ${currentValues.length} of ${filteredAndSortedValues.length} elements`}
       />
       <Filters
-        inputPlaceholder={config.texts.filterInputPlaceholder}
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        sortDirection={sortDirection}
-        onSortDirectionChange={setSortDirection}
-        onClearFilters={handleClearFilters}
-        sortOptions={config.sortOptions}
+        config={{
+          inputPlaceholder: config.texts.filterInputPlaceholder,
+          sortOptions: config.sortOptions,
+        }}
+        state={{
+          searchTerm,
+          sortBy,
+          sortDirection,
+        }}
+        callbacks={{
+          onSearchChange: setSearchTerm,
+          onSortChange: setSortBy,
+          onSortDirectionChange: setSortDirection,
+          onClearFilters: handleClearFilters,
+        }}
       />
 
       {isFiltering ? (

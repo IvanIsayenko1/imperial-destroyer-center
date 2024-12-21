@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navigation component > should match snapshot 1`] = `
+<DocumentFragment>
+  <nav>
+    <a
+      aria-current="page"
+      class="nav-link active"
+      data-discover="true"
+      href="/planets"
+    >
+      Planets
+    </a>
+    <a
+      class="nav-link "
+      data-discover="true"
+      href="/starships"
+    >
+      Starships
+    </a>
+    <a
+      class="nav-link "
+      data-discover="true"
+      href="/vehicles"
+    >
+      Vehicles
+    </a>
+  </nav>
+</DocumentFragment>
+`;

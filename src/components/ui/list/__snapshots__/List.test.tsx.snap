@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`List component > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="list"
+  >
+    <div>
+      <span>
+        1
+      </span>
+    </div>
+    <div>
+      <span>
+        2
+      </span>
+    </div>
+    <div>
+      <span>
+        3
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;

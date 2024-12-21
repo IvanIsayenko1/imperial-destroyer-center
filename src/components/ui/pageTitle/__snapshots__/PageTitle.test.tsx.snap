@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PageTitle component > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="page-title"
+  >
+    <h2>
+      Test Title
+    </h2>
+    <p
+      class="subtitle"
+    >
+      Test Subtitle
+    </p>
+  </div>
+</DocumentFragment>
+`;

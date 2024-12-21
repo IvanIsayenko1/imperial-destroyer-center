@@ -1,0 +1,50 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Paginator component > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="paginator box"
+  >
+    <button
+      class="paginator-button"
+      disabled=""
+    >
+      Previous
+    </button>
+    <div
+      class="paginator-pages"
+    >
+      <button
+        class="paginator-page active"
+      >
+        1
+      </button>
+      <button
+        class="paginator-page "
+      >
+        2
+      </button>
+      <button
+        class="paginator-page "
+      >
+        3
+      </button>
+      <button
+        class="paginator-page "
+      >
+        4
+      </button>
+      <button
+        class="paginator-page "
+      >
+        5
+      </button>
+    </div>
+    <button
+      class="paginator-button"
+    >
+      Next
+    </button>
+  </div>
+</DocumentFragment>
+`;

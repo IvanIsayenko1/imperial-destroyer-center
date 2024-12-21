@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="card"
+  >
+    <div
+      class="image"
+    >
+      <img
+        alt="Test Card"
+        src="https://example.com/image.jpg"
+      />
+    </div>
+    <div
+      class="info"
+    >
+      <h3>
+        Test Card
+      </h3>
+      <p>
+        property1: value1
+      </p>
+      <p>
+        property2: value2
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

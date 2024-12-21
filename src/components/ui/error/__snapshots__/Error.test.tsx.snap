@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Error component > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="error-container"
+  >
+    <div
+      class="error-content"
+    >
+      <div
+        class="error-icon"
+      >
+        !
+      </div>
+      <h2
+        class="error-title"
+      >
+        Error
+      </h2>
+      <p
+        class="error-message"
+      >
+        Something went wrong
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -28,6 +28,7 @@ export const StarshipsPage: React.FC = () => {
     ],
     name: "starships",
     getImage: getStarshipImage,
+    debounceTime: 300,
   };
   return <Page config={config} />;
 };

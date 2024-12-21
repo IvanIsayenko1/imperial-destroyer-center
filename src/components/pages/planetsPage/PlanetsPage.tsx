@@ -21,6 +21,7 @@ export const PlanetsPage: React.FC = () => {
     cardProperties: ["gravity", "climate", "name", "population", "terrain"],
     name: "planets",
     getImage: getPlanetImage,
+    debounceTime: 300,
   };
   return <Page config={config} />;
 };
